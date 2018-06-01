@@ -23,36 +23,24 @@ function initData() {
 function getSubArray(dt,skipheader,cols)
 {
 var f = new Array();
-
     for(i=0;i<dt.length;i++)
     {
         if(i == 0 && skipheader == true){}
         else{
             if(skipheader)
                 f[i-1]=new Array();
-            else
-                f[i]=new Array();
-            for(j=0;j<cols.length;j++)
-            {
-                if(skipheader)
-                  f[i-1][j]=dt[i][cols[j]];
-                else
-                  f[i][j]=dt[i][cols[j]];
+            else       f[i][j]=dt[i][cols[j]];
             }
         }
     }
  return f;   
 }
-
-
 </script>
 <script>
     initData()
     var col = [0,2]
     var d2 = getSubArray(d,false,col);
     var d3 = getSubArray(d,true,col);
-
-    
         function drawChart() {
             // Define the chart to be drawn.
             var data = google.visualization.arrayToDataTable(d2);
@@ -63,17 +51,18 @@ var f = new Array();
             chart.draw(data, options);
          }
          
-         
-         
          function drawChart1() {
             // Define the chart to be drawn.
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Name');
             data.addColumn('number', 'Salary');
-            //data.addColumn('number', 'Salary');
-            //data.addColumn('boolean', 'Full Time Employee');
+            f[i]=new Array();
+            for(j=0;j<cols.length;j++)
+            {
+            if(skipheader)
+                  f[i-1][j]=dt[i][cols[j]];
+            else
             data.addRows(d3);
-
             var options = {
                showRowNumber: true,
                width: '100%', 
@@ -86,9 +75,6 @@ var f = new Array();
          }
          google.charts.setOnLoadCallback(drawChart);
          google.charts.setOnLoadCallback(drawChart1);
-         
-         
-    
 </script>
 </head>
 <body>
