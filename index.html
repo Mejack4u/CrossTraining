@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<title>Web Page Design</title>
+<script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js">
+      </script>
+      <script type = "text/javascript">
+         google.charts.load('current', {packages: ['corechart']});
+         google.charts.load('current', {packages: ['table']});
+      </script>
+<head>
+<script>
+var d;
+function initData() {
+    d= [
+          ['Year', 'Asia','America','Europe'],
+          ['2012',  900, 123, 8433],
+          ['2013',  1000, 876, 4432],
+          ['2014',  1170, 887, 443],
+          ['2015',  1250, 1092, 987],
+          ['2016',  1530, 3321, 3322]
+       ];
+}
+function getSubArray(dt,skipheader,cols)
+{
+var f = new Array();
+
+    for(i=0;i<dt.length;i++)
+    {
+        if(i == 0 && skipheader == true){}
+        else{
+            if(skipheader)
+                f[i-1]=new Array();
+            else
+                f[i]=new Array();
+            for(j=0;j<cols.length;j++)
+            {
+                if(skipheader)
+                  f[i-1][j]=dt[i][cols[j]];
+                else
+                  f[i][j]=dt[i][cols[j]];
+            }
+        }
+    }
+ return f;   
+}
+
+
+</script>
+<script>
+    initData()
+    var col = [0,2]
+    var d2 = getSubArray(d,false,col);
+    var d3 = getSubArray(d,true,col);
+
+    
+        function drawChart() {
+            // Define the chart to be drawn.
+            var data = google.visualization.arrayToDataTable(d2);
+            var options = {title: 'Population (in millions)', isStacked:true};  
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.BarChart(document.getElementById('container'));
+            chart.draw(data, options);
+         }
+         
+         
+         
+         function drawChart1() {
+            // Define the chart to be drawn.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Name');
+            data.addColumn('number', 'Salary');
+            //data.addColumn('number', 'Salary');
+            //data.addColumn('boolean', 'Full Time Employee');
+            data.addRows(d3);
+
+            var options = {
+               showRowNumber: true,
+               width: '100%', 
+               height: '100%'
+            };
+                  
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.Table(document.getElementById('container1'));
+            chart.draw(data, options);
+         }
+         google.charts.setOnLoadCallback(drawChart);
+         google.charts.setOnLoadCallback(drawChart1);
+         
+         
+    
+</script>
+</head>
+<body>
+   <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto">
+      </div>
+   <div id = "container1" style = "width: 550px; height: 400px; margin: 0 auto">
+      </div>
+  
+</body>
+</html>
