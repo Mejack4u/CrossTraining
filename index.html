@@ -9,7 +9,7 @@
       </script>
 <head>
 <script>
-var d;
+/*var d;
 function initData() {
     d= [
           ['Year', 'Asia','America','Europe'],
@@ -34,14 +34,14 @@ var f = new Array();
         }
     }
  return f;   
-}
+} */
 </script>
 <script>
-    initData()
+/*    initData()
     var col = [0,2]
     var d2 = getSubArray(d,false,col);
     var d3 = getSubArray(d,true,col);
-     alert(d2);
+     alert(d2); */
 /*        function drawChart() {
             // Define the chart to be drawn.
             var data = google.visualization.arrayToDataTable(d2);
@@ -77,6 +77,25 @@ var f = new Array();
          google.charts.setOnLoadCallback(drawChart);
          google.charts.setOnLoadCallback(drawChart1);
 */       
+      function drawChart() {
+            // Define the chart to be drawn.
+            var data = google.visualization.arrayToDataTable(
+            [
+          ['Year', 'Asia','America','Europe'],
+          ['2012',  900, 123, 8433],
+          ['2013',  1000, 876, 4432],
+          ['2014',  1170, 887, 443],
+          ['2015',  1250, 1092, 987],
+          ['2016',  1530, 3321, 3322]
+       ]);
+            var options = {title: 'Population (in millions)', isStacked:true};  
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.BarChart(document.getElementById('container'));
+            chart.draw(data, options);
+         }
+      
+         google.charts.setOnLoadCallback(drawChart);
 </script>
 </head>
 <body>
